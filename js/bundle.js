@@ -47523,7 +47523,7 @@ var Drive = function (config, $) {
         getSpreadsheet: function (fileId, callback) {
             callback = callback || noop;
             var self = this;
-            var sheetUrl = "https://spreadsheets.google.com/feeds/list/" + fileId + "/od6/public/values?alt=json";
+            var sheetUrl = "https://spreadsheets.google.com/feeds/list/" + fileId + "/default/public/values?alt=json";
             self.callJsonP(sheetUrl, callback);
         },
         getDocument: function (fileId, callback) {
