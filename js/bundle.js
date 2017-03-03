@@ -46637,6 +46637,10 @@ var Menu = React.createClass({displayName: "Menu",
                         React.createElement("a", {href: "#!/about"}, "About")
                     ), 
                     React.createElement("li", null, 
+                        React.createElement("i", {className: "fa fa-question"}), 
+                        React.createElement("a", {href: "#!/help"}, "Help")
+                    ), 
+                    React.createElement("li", null, 
                         React.createElement("i", {className: "fa fa-paper-plane"}), 
                         React.createElement("a", {href: "#!/contact"}, "Contact")
                     )
