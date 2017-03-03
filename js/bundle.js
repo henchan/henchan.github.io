@@ -47415,9 +47415,9 @@ var Home = React.createClass({displayName: "Home",
 
     render: function () {
         var homeInfo = {
-            title: 'Cats',
-            subtitle: 'React Drive CMS Demo',
-            description: 'Publish articles directly from Google Drive to your website.',
+            title: 'Communication Practice',
+            subtitle: 'Practice communicating in small facilitated groups',
+            description: 'Speak together with a facilitor who guides you through the documented activities. Give Feedback to each other.',
             sidebarImage: '../images/default-sidebar.jpg',
             path: "home"
         };
