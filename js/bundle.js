@@ -47441,8 +47441,8 @@ var Home = React.createClass({displayName: "Home",
                         "Posts"
                     ), 
                     React.createElement("a", {role: "button", 
-                        className: 'select-categories' + ((this.props.activeHomePanel === 'articles') ? ' active' : ''), 
-                        title: "categories", 
+                        className: 'select-categories' + ((this.props.activeHomePanel === 'sections') ? ' active' : ''), 
+                        title: "sections", 
                         onClick: this.setActivePanel
                     }, 
                         "Categories"
