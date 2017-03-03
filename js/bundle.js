@@ -46356,6 +46356,7 @@ var NotFoundRoute = Router.NotFoundRoute;
 
 var Home = require('./../pages/home.jsx');
 var About = require("./../pages/about.jsx");
+var Help = require("./../pages/help.jsx");
 var Contact = require("./../pages/contact.jsx");
 var Article = require("./../pages/article.jsx");
 var Category = require("./../pages/category.jsx");
@@ -46377,7 +46378,7 @@ var routes = function (App) {
 };
 module.exports = routes;
 
-},{"./../pages/about.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/about.jsx","./../pages/article.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/article.jsx","./../pages/category.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/category.jsx","./../pages/contact.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/contact.jsx","./../pages/home.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/home.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-router":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-router/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/comments/disqusCount.jsx":[function(require,module,exports){
+},{"./../pages/about.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/about.jsx","./../pages/article.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/article.jsx","./../pages/category.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/category.jsx","./../pages/contact.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/contact.jsx","./../pages/help.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/help.jsx","./../pages/home.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/home.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-router":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-router/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/comments/disqusCount.jsx":[function(require,module,exports){
 'use strict';
 var React = require('react');
 var config = window.configReactDriveCms;
@@ -47404,7 +47405,55 @@ var Contact = React.createClass({displayName: "Contact",
 });
 module.exports = Contact;
 
-},{"./../../utils/utils":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/utils/utils.js","./../layout/page/page.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/page/page.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-bootstrap":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-bootstrap/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/home.jsx":[function(require,module,exports){
+},{"./../../utils/utils":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/utils/utils.js","./../layout/page/page.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/page/page.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-bootstrap":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-bootstrap/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/help.jsx":[function(require,module,exports){
+'use strict';
+var React = require('react');
+var Row = require('react-bootstrap').Row;
+
+var Page = require('./../layout/page/page.jsx');
+var Help = React.createClass({displayName: "Help",
+    render: function () {
+
+        var aboutInfo = {
+            title: 'Help',
+            subtitle: 'Training, Support',
+            description: 'Support pages for Communacado participants and facilitators',
+            sidebarImage: '../images/default-about.jpg',
+            path: "help"
+        };
+
+        return (
+            React.createElement(Page, {
+                pageInfo: aboutInfo, 
+                menuVisible: this.props.menuVisible, 
+                categories: this.props.store.category, 
+                handleRouting: this.props.handleRouting, 
+                setMainProperty: this.props.setMainProperty, 
+                activeCategory: this.props.activeCategory, 
+                modal: this.props.modal
+            }, 
+                React.createElement("div", {className: "author-bio"}, 
+
+                    React.createElement("img", {src: "https://raw.githubusercontent.com/misterfresh/react-drive-cms/gh-pages/images/react_logo.png"}), 
+
+                    React.createElement("div", {className: "author-bio__info"}, 
+                        React.createElement("h1", null, "React Drive CMS Demo"), 
+                        React.createElement("p", null, "A demo site to showcase the use of Google Drive as a Content Management System. Write articles in Google Docs and publish them directly from there."), 
+                        React.createElement("p", null, "Google Drive is the backend, only a few static files are hosted on GitHub Pages, and the content is displayed with React JS.")
+                    )
+                ), 
+
+
+                React.createElement("footer", {className: "split-footer"}, 
+                    React.createElement("a", {href: "#!/contact"}, "Contact")
+                )
+            )
+        )
+    }
+});
+module.exports = Help;
+
+},{"./../layout/page/page.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/page/page.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-bootstrap":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-bootstrap/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/home.jsx":[function(require,module,exports){
 'use strict';
 var React = require('react');
 var Row = require('react-bootstrap').Row;
