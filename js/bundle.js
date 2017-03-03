@@ -46367,6 +46367,7 @@ var routes = function (App) {
             React.createElement(Route, {name: "home", path: "home", handler: Home}), 
             React.createElement(Route, {name: "about", path: "about", handler: About}), 
             React.createElement(Route, {name: "help", path: "help", handler: Help}), 
+            React.createElement(Route, {name: "training", path: "help/training", handler: Training}), 
             React.createElement(Route, {name: "contact", path: "contact", handler: Contact}), 
             React.createElement(Route, {name: "article", path: "article/:articleId/:slug", handler: Article}), 
             React.createElement(Route, {name: "category", path: "category/:categoryId/:slug", handler: Category}), 
