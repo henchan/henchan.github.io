@@ -46646,6 +46646,7 @@ var Menu = React.createClass({displayName: "Menu",
                         React.createElement("a", {href: "#!/contact"}, "Contact")
                     )
                 ), 
+                this.props.children, 
                 React.createElement("hr", null), 
                 React.createElement("ul", {className: "menu-category-list"}, 
                     self.props.categories.map(function (category, i) {
