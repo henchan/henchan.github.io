@@ -1,5 +1,5 @@
 configReactDriveCms = {
-    author: 'Andrew Henderson',
+    author: 'communacado',
     /**
      * Add the Id for the Google Sheets Dashboard file
      */
