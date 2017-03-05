@@ -47452,6 +47452,7 @@ var Drive = function (config, $) {
                 type: 'GET',
                 dataType: 'text',
                 success: function (res, status) {
+                    console.log(res);
                     callback(res);
                 },
                 error: function (res, status, error) {
