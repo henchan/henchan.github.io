@@ -46378,106 +46378,7 @@ var routes = function (App) {
 };
 module.exports = routes;
 
-},{"./../pages/about.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/about.jsx","./../pages/article.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/article.jsx","./../pages/category.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/category.jsx","./../pages/contact.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/contact.jsx","./../pages/help.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/help.jsx","./../pages/home.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/home.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-router":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-router/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/comments/disqusCount.jsx":[function(require,module,exports){
-'use strict';
-var React = require('react');
-var config = window.configReactDriveCms;
-var DisqusCount = React.createClass({displayName: "DisqusCount",
-    addDisqusScript: function () {
-        var self = this;
-        var child = self.disqusCount = document.createElement('script');
-        var parent = document.getElementsByTagName('head')[0] ||
-            document.getElementsByTagName('body')[0];
-        child.async = true;
-        child.type = 'text/javascript';
-        child.src = '//' + config.shortname + '.disqus.com/count.js';
-        parent.appendChild(child);
-    },
-
-    removeDisqusScript: function () {
-        var self = this;
-        if (self.disqusCount && self.disqusCount.parentNode) {
-            self.disqusCount.parentNode.removeChild(self.disqusCount);
-            self.disqusCount = null;
-        }
-    },
-
-    componentDidMount: function () {
-        var self = this;
-        window.disqus_shortname = config.shortname;
-        if (typeof window.DISQUSWIDGETS !== "undefined") {
-            window.DISQUSWIDGETS = undefined;
-        }
-        self.addDisqusScript();
-    },
-
-    componentWillUnmount: function () {
-        var self = this;
-        self.removeDisqusScript();
-    },
-
-    render: function () {
-        return (
-            React.createElement("span", {id: "disqus-comments-count"})
-        );
-    }
-});
-module.exports = DisqusCount;
-
-},{"react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/comments/disqusThread.jsx":[function(require,module,exports){
-'use strict';
-var React = require('react');
-var config = window.configReactDriveCms;
-
-var DisqusThread = React.createClass({displayName: "DisqusThread",
-
-    addDisqusScript: function () {
-        var self = this;
-        var child = self.disqus = document.createElement('script');
-        var parent = document.getElementsByTagName('head')[0] ||
-            document.getElementsByTagName('body')[0];
-        child.async = true;
-        child.type = 'text/javascript';
-        child.src = '//' + config.shortname + '.disqus.com/embed.js';
-        parent.appendChild(child);
-    },
-
-    removeDisqusScript: function () {
-        var self = this;
-        if (self.disqus && self.disqus.parentNode) {
-            self.disqus.parentNode.removeChild(self.disqus);
-            self.disqus = null;
-        }
-    },
-
-    componentDidMount: function () {
-        var self = this;
-        window.disqus_shortname = config.shortname;
-        window.disqus_identifier = self.props.id;
-        window.disqus_title = self.props.title;
-        window.disqus_url = window.location.href;
-
-        if (typeof window.DISQUS !== "undefined") {
-            window.DISQUS.reset({reload: true});
-        } else {
-            self.addDisqusScript();
-        }
-    },
-
-    componentWillUnmount: function () {
-        var self = this;
-        self.removeDisqusScript();
-    },
-
-    render: function () {
-        return (
-            React.createElement("div", {id: "disqus_thread"})
-        );
-    }
-});
-module.exports = DisqusThread;
-
-},{"react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/footer/credits.jsx":[function(require,module,exports){
+},{"./../pages/about.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/about.jsx","./../pages/article.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/article.jsx","./../pages/category.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/category.jsx","./../pages/contact.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/contact.jsx","./../pages/help.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/help.jsx","./../pages/home.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/home.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-router":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-router/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/footer/credits.jsx":[function(require,module,exports){
 'use strict';
 var React = require('react');
 var string = require('./../../../utils/utils').string;
@@ -47023,13 +46924,6 @@ var Post = React.createClass({displayName: "Post",
                 React.createElement("p", null, this.props.article.subtitle), 
 
                 React.createElement("p", {className: "meta"}, 
-                    React.createElement("span", {
-                        title: "Comments for " + this.props.article.title, 
-                        "data-disqus-url": window.location.protocol + window.location.hostname + '/' + articleUrl, 
-                        "data-disqus-identifier": this.props.article.driveId, 
-                        className: "disqus-comment-count"
-                    }
-                    ), 
                 " - " + ' ' +
                     "Published in :  ", 
                     React.createElement("a", {
@@ -47127,7 +47021,6 @@ var Row = require('react-bootstrap').Row;
 var Footer = require('./../layout/footer/footer.jsx');
 var Menu = require('./../layout/menu/menu.jsx');
 var MenuBurger = require('./../layout/menu/menuBurger.jsx');
-var DisqusThread = require('./../comments/disqusThread.jsx');
 var Article = React.createClass({displayName: "Article",
     componentDidMount: function () {
 
@@ -47161,10 +47054,6 @@ var Article = React.createClass({displayName: "Article",
                             )
                         )
                     ), 
-                    React.createElement(DisqusThread, {
-                        id: this.props.currentPage.driveId, 
-                        title: this.props.currentPage.title}
-                    ), 
                     React.createElement(Footer, {
                         lastUpdated: this.props.currentPage.lastUpdated, 
                         category: this.props.currentPage.category, 
@@ -47179,13 +47068,12 @@ var Article = React.createClass({displayName: "Article",
 });
 module.exports = Article;
 
-},{"./../comments/disqusThread.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/comments/disqusThread.jsx","./../layout/footer/footer.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/footer/footer.jsx","./../layout/menu/menu.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/menu/menu.jsx","./../layout/menu/menuBurger.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/menu/menuBurger.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-bootstrap":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-bootstrap/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/category.jsx":[function(require,module,exports){
+},{"./../layout/footer/footer.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/footer/footer.jsx","./../layout/menu/menu.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/menu/menu.jsx","./../layout/menu/menuBurger.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/menu/menuBurger.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-bootstrap":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-bootstrap/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/category.jsx":[function(require,module,exports){
 'use strict';
 var React = require('react');
 var Row = require('react-bootstrap').Row;
 var Posts = require('./../lists/post/posts.jsx');
 var Page = require('./../layout/page/page.jsx');
-var DisqusCount = require('./../comments/disqusCount.jsx');
 var Category = React.createClass({displayName: "Category",
     render: function () {
         var category = this.props.store.category[this.props.params.categoryId];
@@ -47220,15 +47108,14 @@ var Category = React.createClass({displayName: "Category",
                     articles: category.articles, 
                     activeHomePanel: "articles", 
                     handleRouting: this.props.handleRouting}
-                ), 
-                React.createElement(DisqusCount, null)
+                )
             )
         )
     }
 });
 module.exports = Category;
 
-},{"./../comments/disqusCount.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/comments/disqusCount.jsx","./../layout/page/page.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/page/page.jsx","./../lists/post/posts.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/lists/post/posts.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-bootstrap":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-bootstrap/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/contact.jsx":[function(require,module,exports){
+},{"./../layout/page/page.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/page/page.jsx","./../lists/post/posts.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/lists/post/posts.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-bootstrap":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-bootstrap/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/pages/contact.jsx":[function(require,module,exports){
 'use strict';
 var React = require('react');
 var Input = require('react-bootstrap').Input;
@@ -47464,7 +47351,6 @@ var Row = require('react-bootstrap').Row;
 var Posts = require('./../lists/post/posts.jsx');
 var Categories = require('./../lists/category/categories.jsx');
 var Page = require('./../layout/page/page.jsx');
-var DisqusCount = require('./../comments/disqusCount.jsx');
 var Home = React.createClass({displayName: "Home",
 
     render: function () {
@@ -47511,9 +47397,8 @@ var Home = React.createClass({displayName: "Home",
                     categories: this.props.store.category, 
                     activeHomePanel: this.props.activeHomePanel, 
                     handleRouting: this.props.handleRouting}
-                ), 
-                React.createElement(DisqusCount, null)
-            )
+                )
+             )
         )
     },
     setActivePanel: function (e) {
@@ -47523,7 +47408,7 @@ var Home = React.createClass({displayName: "Home",
 });
 module.exports = Home;
 
-},{"./../comments/disqusCount.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/comments/disqusCount.jsx","./../layout/page/page.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/page/page.jsx","./../lists/category/categories.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/lists/category/categories.jsx","./../lists/post/posts.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/lists/post/posts.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-bootstrap":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-bootstrap/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/startApp.jsx":[function(require,module,exports){
+},{"./../layout/page/page.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/layout/page/page.jsx","./../lists/category/categories.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/lists/category/categories.jsx","./../lists/post/posts.jsx":"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/lists/post/posts.jsx","react":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react/react.js","react-bootstrap":"/Users/henchan/ownCloud/react-drive-cms/node_modules/react-bootstrap/lib/index.js"}],"/Users/henchan/ownCloud/react-drive-cms/src/client/js/components/startApp.jsx":[function(require,module,exports){
 'use strict';
 var React = require('react');
 var Router = require('react-router');
