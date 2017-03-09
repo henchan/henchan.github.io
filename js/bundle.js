@@ -47516,7 +47516,8 @@ var Drive = function (config, $) {
             var htmlStr = GoogleParsedHtml.slice(0);
 
             var uriStr = 'https://uri.charbutton.communacado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
-            var hrefOpenStr= ' href="', hrefCloseStr= '">&#', guidOpenStr='?guid%3D', guidCloseStr='&amp;', guid = '', buttonCloseStr= ';</a>', unicodeCloseStr= ';</a>', button_code = '', buttonRoute = '', dummy_guid = "12345678-9012-3456-7890-123456789012",
+            var hrefOpenStr = ' href="', hrefCloseStr = '">&#', guidOpenStr = '?guid%3D', guidCloseStr = '&amp;', guid = '', buttonCloseStr = ';</a>', 
+                button_code = '', buttonRoute = '', dummy_guid = '12345678-9012-3456-7890-123456789012',
                 strPos = 0, nextUriPos = 0, hrefPos = 0, startCutPos = 0, endCutPos = 0, buttonStartPos = 0, guidStartPos=0, guidEndPos=0,
                 seekhrefBack = 50; // far enough back, but not too far to stray into the previous button
 
@@ -47549,9 +47550,8 @@ var Drive = function (config, $) {
                 guidStartPos = startCutPos + htmlStr.slice(startCutPos).indexOf(guidOpenStr)  + guidOpenStr.length;
                 guidEndPos = guidStartPos + htmlStr.slice(guidStartPos).indexOf(guidCloseStr);
                 guid = htmlStr.slice(guidStartPos, guidEndPos);
-                alert(guid);
                 if (guid && guid != dummy_guid) {
-                    htmlStr = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + guidCloseStr + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
+                    htmlStr = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + ';' + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
                 }    
             }
 
