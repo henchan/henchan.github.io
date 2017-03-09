@@ -47531,7 +47531,7 @@ var Drive = function (config, $) {
                     'x1F4ca':   '/chart',
                     'x1f933':   '/selfie' 
             };
-
+alert("replaceCharButtons");
             while (true) {
                 strPos = htmlStr.slice(nextUriPos).indexOf(uriStr);
               if (strPos == -1) break;
