@@ -47531,7 +47531,7 @@ var Drive = function (config, $) {
                     'x1F4ca':   '/chart',
                     'x1f933':   '/selfie' 
             };
-alert("replaceCharButtons");
+
             while (true) {
                 strPos = htmlStr.slice(nextUriPos).indexOf(uriStr);
               if (strPos == -1) break;
@@ -47549,6 +47549,7 @@ alert("replaceCharButtons");
                 guidStartPos = startCutPos + htmlStr.slice(startCutPos).indexOf(guidOpenStr)  + guidOpenStr.length;
                 guidEndPos = guidStartPos + htmlStr.slice(guidStartPos).indexOf(guidCloseStr);
                 guid = htmlStr.slice(guidStartPos, guidEndPos);
+                alert(guid);
                 if (guid && guid != dummy_guid) {
                     htmlStr = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + guidCloseStr + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
                 }    
