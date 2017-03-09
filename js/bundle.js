@@ -47551,7 +47551,7 @@ var Drive = function (config, $) {
                 guidEndPos = guidStartPos + htmlStr.slice(guidStartPos).indexOf(guidCloseStr);
                 guid = htmlStr.slice(guidStartPos, guidEndPos);
                 if (guid && guid != dummy_guid) {
-                    htmlStr = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + ';' + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
+                    htmlStr = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
                 }    
             }
 
