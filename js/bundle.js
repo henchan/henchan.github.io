@@ -47505,8 +47505,56 @@ var Drive = function (config, $) {
             var self = this;
             self.getDocument(elementId, function (doc) {
                 var docHtml = content.parseHtml(doc);
-                callback((docHtml.styles + docHtml.html));
+                callback((docHtml.styles + self.replaceCharButtons(docHtml.html)));
             })
+        },
+        replaceCharButtons: function (GoogleParsedHtml) {
+
+            // replace multiple character buttons identified with specal uri with internal app route and guid
+            // this function assumes Google export function produces a certain format, which is not documented.
+            // It might break if https://docs.google.com/feeds/download/documents/export changes output
+            var htmlStr = GoogleParsedHtml.slice(0);
+
+            var uriStr = 'https://uri.charbutton.communacado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
+            var hrefOpenStr= ' href="', hrefCloseStr= '">&#', guidOpenStr='?guid%3D', guidCloseStr='&amp;', guid = '', buttonCloseStr= ';</a>', unicodeCloseStr= ';</a>', button_code = '', buttonRoute = '', dummy_guid = "12345678-9012-3456-7890-123456789012",
+                strPos = 0, nextUriPos = 0, hrefPos = 0, startCutPos = 0, endCutPos = 0, buttonStartPos = 0, guidStartPos=0, guidEndPos=0,
+                seekhrefBack = 50; // far enough back, but not too far to stray into the previous button
+
+            // keys are lower case
+            var buttonsRoutesObj = { 
+                    'x1f3a4':   '/micOn',  
+                    'x1f4f5':   '/micOff',
+                    'x1f50a':   '/speakerOn',
+                    'x1f507':   '/speakerOff',
+                    '9878':     '/judge', 
+                    'x1f4c5':   '/schedule',
+                    'x1F4ca':   '/chart',
+                    'x1f933':   '/selfie' 
+            };
+
+            while (true) {
+                strPos = htmlStr.slice(nextUriPos).indexOf(uriStr);
+              if (strPos == -1) break;
+                nextUriPos += strPos+1; // 1 forward to prevent repeat
+
+                // search for preceding href
+                strPos = htmlStr.slice(nextUriPos - seekhrefBack).indexOf(hrefOpenStr);
+                startCutPos = strPos + nextUriPos - seekhrefBack;
+                strPos = htmlStr.slice(nextUriPos).indexOf(hrefCloseStr);
+                buttonStartPos = strPos + nextUriPos + hrefCloseStr.length;
+
+                button_code = htmlStr.slice(buttonStartPos, 
+                    buttonStartPos + htmlStr.slice(buttonStartPos).indexOf(buttonCloseStr));
+                buttonRoute = buttonsRoutesObj[button_code.toLowerCase()] || '/invalidButton'
+                guidStartPos = startCutPos + htmlStr.slice(startCutPos).indexOf(guidOpenStr)  + guidOpenStr.length;
+                guidEndPos = guidStartPos + htmlStr.slice(guidStartPos).indexOf(guidCloseStr);
+                guid = htmlStr.slice(guidStartPos, guidEndPos);
+                if (guid && guid != dummy_guid) {
+                    htmlStr = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + guidCloseStr + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
+                }    
+            }
+
+            return htmlStr;
         }
     };
 };
