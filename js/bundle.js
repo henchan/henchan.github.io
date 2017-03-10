@@ -47527,6 +47527,7 @@ var Drive = function (config, $) {
                     'x1f50a':   '/speakerOn',
                     'x1f507':   '/speakerOff',
                     '9878':     '/judge', 
+                    '9745':     '/task', 
                     'x1f4c5':   '/schedule',
                     'x1F4ca':   '/chart',
                     'x1f933':   '/selfie' 
