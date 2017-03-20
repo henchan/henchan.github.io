@@ -47509,10 +47509,13 @@ var Drive = function (config, $) {
         },
         replaceCharButtons: function (GoogleParsedHtml) {
 
-            // replace multiple character buttons identified with specal uri with internal app route and guid
+            // henchan
+            // replace multiple character buttons identified by a specal uri with internal app route hash and/or guid
             // this function assumes Google export function produces a certain format, which is not documented.
-            // It might break if https://docs.google.com/feeds/download/documents/export changes output
+            // It might break if https://docs.google.com/feeds/download/documents/export changes output format
             var htmlStr = GoogleParsedHtml.slice(0);
+
+            alert('here');
 
             var uriStr = 'https://uri.charbutton.communacado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
             var hrefOpenStr = ' href="', hrefCloseStr = '">&#', guidOpenStr = '?guid%3D', guidCloseStr = '&amp;', guid = '', buttonCloseStr = ';</a>', 
