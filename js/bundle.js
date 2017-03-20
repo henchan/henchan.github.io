@@ -47519,7 +47519,7 @@ var Drive = function (config, $) {
 
             var uriStr = 'https://uri.charbutton.communacado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
             var hrefOpenStr = ' href="', hrefCloseStr = '">&#', guidOpenStr = '?guid%3D', guidCloseStr = '&amp;', guid = '', buttonCloseStr = ';</a>', 
-                button_code = '', buttonRoute = '',
+                button_code = '', buttonRoute = '', adjust = 1, newHtml,
                 strPos = 0, nextUriPos = 0, hrefPos = 0, startCutPos = 0, endCutPos = 0, buttonStartPos = 0, guidStartPos=0, guidEndPos=0,
                 seekhrefBack = 50; // far enough back, but not too far to stray into the previous button
 
@@ -47536,13 +47536,9 @@ var Drive = function (config, $) {
                     'x1f933':   '/selfie' 
             };
 
-            strPos = htmlStr.slice(nextUriPos).indexOf(uriStr);
+            while (strPos = htmlStr.slice(nextUriPos).indexOf(uriStr) !== -1) {
 
-
-            while (strPos !== -1) {
-                strPos = htmlStr.slice(nextUriPos).indexOf(uriStr);
-
-                nextUriPos += strPos+1; // 1 forward to prevent repeat
+                nextUriPos += strPos + adjust; // adjust forward to prevent endless repetition
 
                 // search for preceding href
                 strPos = htmlStr.slice(nextUriPos - seekhrefBack).indexOf(hrefOpenStr);
@@ -47556,11 +47552,13 @@ var Drive = function (config, $) {
                 guidStartPos = startCutPos + htmlStr.slice(startCutPos).indexOf(guidOpenStr)  + guidOpenStr.length;
                 guidEndPos = guidStartPos + htmlStr.slice(guidStartPos).indexOf(guidCloseStr);
                 guid = htmlStr.slice(guidStartPos, guidEndPos);
+                
                 if (guid) {
-                    htmlStr = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
-                }   
+                    newHtml = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
+                    adjust = newHtml.length + 1 - htmlStr.length;
+                    htmlStr = newHtml;
+               }
             }
-
             return htmlStr;
         }
     };
