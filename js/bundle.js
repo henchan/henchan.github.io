@@ -47557,6 +47557,7 @@ var Drive = function (config, $) {
                     newHtml = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
                     adjust = newHtml.length + 1 - htmlStr.length;
                     htmlStr = newHtml;
+                    console.log (guid);
                }
             }
             return htmlStr;
