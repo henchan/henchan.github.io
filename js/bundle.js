@@ -47519,7 +47519,7 @@ var Drive = function (config, $) {
 
             var uriStr = 'https://uri.charbutton.communacado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
             var hrefOpenStr = ' href="', hrefCloseStr = '">&#', guidOpenStr = '?guid%3D', guidCloseStr = '&amp;', guid = '', buttonCloseStr = ';</a>', 
-                button_code = '', buttonRoute = '', dummy_guid = '12345678-9012-3456-7890-123456789012',
+                button_code = '', buttonRoute = '',
                 strPos = 0, nextUriPos = 0, hrefPos = 0, startCutPos = 0, endCutPos = 0, buttonStartPos = 0, guidStartPos=0, guidEndPos=0,
                 seekhrefBack = 50; // far enough back, but not too far to stray into the previous button
 
@@ -47536,9 +47536,12 @@ var Drive = function (config, $) {
                     'x1f933':   '/selfie' 
             };
 
-            while (true) {
+            strPos = htmlStr.slice(nextUriPos).indexOf(uriStr);
+
+
+            while (strPos !== -1) {
                 strPos = htmlStr.slice(nextUriPos).indexOf(uriStr);
-              if (strPos == -1) break;
+
                 nextUriPos += strPos+1; // 1 forward to prevent repeat
 
                 // search for preceding href
@@ -47553,9 +47556,9 @@ var Drive = function (config, $) {
                 guidStartPos = startCutPos + htmlStr.slice(startCutPos).indexOf(guidOpenStr)  + guidOpenStr.length;
                 guidEndPos = guidStartPos + htmlStr.slice(guidStartPos).indexOf(guidCloseStr);
                 guid = htmlStr.slice(guidStartPos, guidEndPos);
-                if (guid && guid != dummy_guid) {
+                if (guid) {
                     htmlStr = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
-                }    
+                }   
             }
 
             return htmlStr;
