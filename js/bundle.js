@@ -47515,7 +47515,7 @@ var Drive = function (config, $) {
             // It might break if https://docs.google.com/feeds/download/documents/export changes output format
             var htmlStr = GoogleParsedHtml.slice(0);
 
-            alert('here');
+console.log (htmlStr);
 
             var uriStr = 'https://uri.charbutton.communacado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
             var hrefOpenStr = ' href="', hrefCloseStr = '">&#', guidOpenStr = '?task_id%3D', guidCloseStr = '&amp;', guid = '', buttonCloseStr = ';</a>', 
