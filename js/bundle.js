@@ -47556,7 +47556,7 @@ console.log (htmlStr);
                 if (guid) {
                     newHtml = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
                     adjust = newHtml.length + 1 - htmlStr.length;
-                    htmlStr = newHtml;
+                 //   htmlStr = newHtml;
                     console.log (guid);
                }
             }
