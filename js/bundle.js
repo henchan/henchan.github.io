@@ -47553,11 +47553,13 @@ console.log (htmlStr);
                 guidEndPos = guidStartPos + htmlStr.slice(guidStartPos).indexOf(guidCloseStr);
                 guid = htmlStr.slice(guidStartPos, guidEndPos);
                 
+                console.log ('startCutPos '+startCutPos);
+
                 if (guid) {
                     newHtml = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
                     adjust = newHtml.length + 1 - htmlStr.length;
                  //   htmlStr = newHtml;
-                    console.log (guid);
+                   // console.log (guid);
                }
             }
             return htmlStr;
