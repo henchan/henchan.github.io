@@ -47517,11 +47517,11 @@ var Drive = function (config, $) {
 
 console.log (htmlStr);
 
-            var uriStr = 'https://uri.charbutton.communacado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
+            var buttonUriStr = 'https://uri.charbutton.communacado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
             var hrefOpenStr = ' href="', hrefCloseStr = '">&#', guidOpenStr = '?task_id%3D', guidCloseStr = '&amp;', guid = '', buttonCloseStr = ';</a>', 
                 button_code = '', buttonRoute = '', adjust = 1, newHtml,
-                strPos = 0, nextUriPos = 0, hrefPos = 0, startCutPos = 0, endCutPos = 0, buttonStartPos = 0, guidStartPos=0, guidEndPos=0,
-                seekhrefBack = 180; // far enough back, but not too far to stray into the previous button
+                strPos = 0, lastStrPos = 0, nextUriPos = 0, hrefPos = 0, startCutPos = 0, endCutPos = 0, buttonStartPos = 0, guidStartPos=0, guidEndPos=0,
+                seekhrefBack = 50; // far enough back, but not so far as to stray into the previous button
 
             // keys are lower case
             var buttonsRoutesObj = { 
@@ -47535,8 +47535,9 @@ console.log (htmlStr);
                     'x1F4ca':   '/chart',
                     'x1f933':   '/selfie' 
             };
+            /*
 
-            while ((strPos = htmlStr.slice(nextUriPos).indexOf(uriStr)) !== -1) {
+            while ((strPos = htmlStr.slice(nextUriPos).indexOf(buttonUriStr)) !== -1) {
                 console.log ('strPos '+strPos);
 
                 nextUriPos += strPos + adjust; // adjust forward to prevent endless repetition
@@ -47562,10 +47563,10 @@ console.log (htmlStr);
                  //   htmlStr = newHtml;
                    // console.log (guid);
                }
-               else {
-                nextUriPos += 1;
-               }
+
+               lastStrPos = strPos;
             }
+            */
             return htmlStr;
         }
     };
