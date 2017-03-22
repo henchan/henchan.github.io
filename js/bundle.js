@@ -47521,7 +47521,7 @@ console.log (htmlStr);
             var hrefOpenStr = ' href="', hrefCloseStr = '">&#', guidOpenStr = '?task_id%3D', guidCloseStr = '&amp;', guid = '', buttonCloseStr = ';</a>', 
                 button_code = '', buttonRoute = '', adjust = 1, newHtml,
                 strPos = 0, nextUriPos = 0, hrefPos = 0, startCutPos = 0, endCutPos = 0, buttonStartPos = 0, guidStartPos=0, guidEndPos=0,
-                seekhrefBack = 80; // far enough back, but not too far to stray into the previous button
+                seekhrefBack = 180; // far enough back, but not too far to stray into the previous button
 
             // keys are lower case
             var buttonsRoutesObj = { 
