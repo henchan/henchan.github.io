@@ -47562,6 +47562,9 @@ console.log (htmlStr);
                  //   htmlStr = newHtml;
                    // console.log (guid);
                }
+               else {
+                nextUriPos += 1;
+               }
             }
             return htmlStr;
         }
