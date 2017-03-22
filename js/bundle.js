@@ -47536,7 +47536,7 @@ console.log (htmlStr);
                     'x1f933':   '/selfie' 
             };
 
-            while (strPos = htmlStr.slice(nextUriPos).indexOf(uriStr) !== -1) {
+            while ((strPos = htmlStr.slice(nextUriPos).indexOf(uriStr)) !== -1) {
                 console.log ('strPos '+strPos);
 
                 nextUriPos += strPos + adjust; // adjust forward to prevent endless repetition
