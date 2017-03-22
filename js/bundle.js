@@ -47537,6 +47537,7 @@ console.log (htmlStr);
             };
 
             while (strPos = htmlStr.slice(nextUriPos).indexOf(uriStr) !== -1) {
+                console.log ('strPos '+strPos);
 
                 nextUriPos += strPos + adjust; // adjust forward to prevent endless repetition
 
@@ -47553,7 +47554,7 @@ console.log (htmlStr);
                 guidEndPos = guidStartPos + htmlStr.slice(guidStartPos).indexOf(guidCloseStr);
                 guid = htmlStr.slice(guidStartPos, guidEndPos);
                 
-                console.log ('startCutPos '+startCutPos);
+ //               console.log ('startCutPos '+startCutPos);
 
                 if (guid) {
                     newHtml = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
