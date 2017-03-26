@@ -47606,7 +47606,7 @@ var Drive = function (config, $) {
                 {
                     for (var buttonEmoji in buttonEmojis) {
                         button = buttonEmojis[buttonEmoji];
-/*                     
+                    
                         unicodePos = htmlStr
                             .slice(
                                 nextHref,
@@ -47627,7 +47627,7 @@ var Drive = function (config, $) {
                             nextHref = nextHref + htmlStr.length - newHtmlStr.length;
                             htmlStr = newHtmlStr.slice(0);
                         }
-*/                    }
+                    }
                 }
                 hrefPos = htmlStr.slice(nextHref).indexOf(hrefOpenStr);
             }
