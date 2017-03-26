@@ -47607,8 +47607,9 @@ alert("found a href");
                 {
 alert("found a button");
                     for (buttonEmoji in buttonEmojis) {
+                        button = buttonEmojis[buttonEmoji];
 alert("try button "+button.emoji);
-/*                        button = buttonEmojis[buttonEmoji];
+/*                     
                         unicodePos = htmlStr
                             .slice(
                                 nextHref,
