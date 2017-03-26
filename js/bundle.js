@@ -47605,7 +47605,9 @@ alert("found a href");
 
                 if (buttonPos !== -1) // a button is in this href
                 {
+alert("found a button");
                     for (buttonEmoji in buttonEmojis) {
+alert("try button "+button.emoji);
                         button = buttonEmojis[buttonEmoji];
                         unicodePos = htmlStr
                             .slice(
