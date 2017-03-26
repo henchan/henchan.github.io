@@ -47607,6 +47607,7 @@ alert("found a href");
                 {
 alert("found a button");
                     for (buttonEmoji in buttonEmojis) {
+alert ("for");
                         button = buttonEmojis[buttonEmoji];
 alert("try button "+button.emoji);
 /*                     
