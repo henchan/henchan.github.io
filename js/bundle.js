@@ -47606,7 +47606,7 @@ alert("found a href");
                 if (buttonPos !== -1) // a button is in this href
                 {
 alert("found a button");
-                    for (buttonEmoji in buttonEmojis) {
+                    for (var buttonEmoji in buttonEmojis) {
 alert ("for");
                         button = buttonEmojis[buttonEmoji];
 alert("try button "+button.emoji);
