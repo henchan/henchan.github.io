@@ -47601,7 +47601,7 @@ var Drive = function (config, $) {
                 nextHref += hrefPos + 1;
                 hrefEndPos = htmlStr.slice(nextHref).indexOf(hrefCloseStr);
                 buttonPos = htmlStr.slice(nextHref, nextHref + hrefEndPos).indexOf(buttonUriStr);
-alert("here");
+alert("found a href");
 
                 if (buttonPos !== -1) // a button is in this href
                 {
@@ -47631,6 +47631,7 @@ alert("here");
                 }
                 hrefPos = htmlStr.slice(nextHref).indexOf(hrefOpenStr);
             }
+            alert("return");
             return htmlStr;
         }
     };
