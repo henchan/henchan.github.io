@@ -47515,58 +47515,125 @@ var Drive = function (config, $) {
             // It might break if https://docs.google.com/feeds/download/documents/export changes output format
             var htmlStr = GoogleParsedHtml.slice(0);
 
-console.log (htmlStr);
+            console.log (htmlStr);
 
-            var buttonUriStr = 'https://uri.charbutton.communacado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
-            var hrefOpenStr = ' href="', hrefCloseStr = '">&#', guidOpenStr = '?task_id%3D', guidCloseStr = '&amp;', guid = '', buttonCloseStr = ';</a>', 
-                button_code = '', buttonRoute = '', adjust = 1, newHtml,
-                strPos = 0, lastStrPos = 0, nextUriPos = 0, hrefPos = 0, startCutPos = 0, endCutPos = 0, buttonStartPos = 0, guidStartPos=0, guidEndPos=0,
-                seekhrefBack = 50; // far enough back, but not so far as to stray into the previous button
+            var buttonUriStr = 'https://uri.charbutton.communocado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
+            var hrefOpenStr = 'href=',
+              hrefCloseStr = '">',
+              guidOpenStr = 'task_id%3D',
+              guidLength = 36,
+              guidPos = 0,
+              guid = '',
+              hrefPos = 0,
+              hrefEndPos = 0,
+              newHtmlStr = '',
+              nextHref = 0,
+              i = 0,
+              buttonPos = 0,
+              unicodePos = 0,
+              button = {};
 
-            // keys are lower case
-            var buttonsRoutesObj = { 
-                    'x1f3a4':   '/micOn',  
-                    'x1f4f5':   '/micOff',
-                    'x1f50a':   '/speakerOn',
-                    'x1f507':   '/speakerOff',
-                    '9878':     '/judge', 
-                    '9745':     '/task', 
-                    'x1f4c5':   '/schedule',
-                    'x1F4ca':   '/chart',
-                    'x1f933':   '/selfie' 
-            };
-            /*
+            var buttonEmojis = {
+                  "task": {
+                    "emoji": "☑",
+                    "unicode": "#9745",
+                    "onClick": "taskPressed"
+                  },
+                  "schedule": {
+                    "emoji": "📅",
+                    "unicode": "#x1f4c5",
+                    "onClick": "schedulePressed"
+                  },
+                  "profile": {
+                    "emoji": "👤",
+                    "unicode": "#x1f464",
+                    "onClick": "profilePressed"
+                  },
+                  "help": {
+                    "emoji": "❔",
+                    "unicode": "#x1f4c5",
+                    "onClick": "helpPressed"
+                  },
+                  "listen": {
+                    "emoji": "🔊",
+                    "unicode": "#x1f50a",
+                    "onClick": "listenPressed"
+                  },
+                  "mic": {
+                    "emoji": "🎤",
+                    "unicode": "#x1f3a4",
+                    "onClick": "micPressed"
+                  },
+                  "studioMic": {
+                    "emoji": "🎙",
+                    "unicode": "#x1f399",
+                    "onClick": "studioMicPressed"
+                  },
+                  "avocado": {
+                    "emoji": "🥑",
+                    "unicode": "#x1f951",
+                    "onClick": "avocadoPressed"
+                  },
+                  "partners": {
+                    "emoji": "👬",
+                    "unicode": "#x1f46c",
+                    "onClick": "partnersPressed"
+                  },
+                  "announce": {
+                    "emoji": "📢",
+                    "unicode": "#x1f56c",
+                    "onClick": "announcePressed"
+                  },
+                  "judge": {
+                    "emoji": "⚖️",
+                    "unicode": "#2696",
+                    "onClick": "judgePressed"
+                  },
+                  "chart": {
+                    "emoji": "📊",
+                    "unicode": "#x1F4ca",
+                    "onClick": "chartPressed"
+                  }
+                };
 
-            while ((strPos = htmlStr.slice(nextUriPos).indexOf(buttonUriStr)) !== -1) {
-                console.log ('strPos '+strPos);
+            // get first instance of href
+            hrefPos = htmlStr.indexOf(hrefOpenStr);
 
-                nextUriPos += strPos + adjust; // adjust forward to prevent endless repetition
+            while (hrefPos !== -1) {
+                nextHref += hrefPos + 1;
+                hrefEndPos = htmlStr.slice(nextHref).indexOf(hrefCloseStr);
+                buttonPos = htmlStr.slice(nextHref, nextHref + hrefEndPos).indexOf(buttonUriStr);
 
-                // search for preceding href
-                strPos = htmlStr.slice(nextUriPos - seekhrefBack).indexOf(hrefOpenStr);
-                startCutPos = strPos + nextUriPos - seekhrefBack;
-                strPos = htmlStr.slice(nextUriPos).indexOf(hrefCloseStr);
-                buttonStartPos = strPos + nextUriPos + hrefCloseStr.length;
+                if (buttonPos !== -1) // a button is in this href
+                {
+                    for (buttonEmoji in buttonEmojis) {
+                        button = buttonEmojis[buttonEmoji];
+                        unicodePos = htmlStr
+                            .slice(
+                                nextHref,
+                                nextHref + hrefEndPos + hrefCloseStr.length + button.unicode.length + 1)
+                            .indexOf(button.unicode);
 
-                button_code = htmlStr.slice(buttonStartPos, 
-                    buttonStartPos + htmlStr.slice(buttonStartPos).indexOf(buttonCloseStr));
-                buttonRoute = buttonsRoutesObj[button_code.toLowerCase()] || '/invalidButton'
-                guidStartPos = startCutPos + htmlStr.slice(startCutPos).indexOf(guidOpenStr)  + guidOpenStr.length;
-                guidEndPos = guidStartPos + htmlStr.slice(guidStartPos).indexOf(guidCloseStr);
-                guid = htmlStr.slice(guidStartPos, guidEndPos);
-                
- //               console.log ('startCutPos '+startCutPos);
-
-                if (guid) {
-                    newHtml = htmlStr.substr(0,startCutPos) + hrefOpenStr + buttonRoute + guidOpenStr + guid + htmlStr.substr(buttonStartPos - hrefCloseStr.length);
-                    adjust = newHtml.length + 1 - htmlStr.length;
-                 //   htmlStr = newHtml;
-                   // console.log (guid);
-               }
-
-               lastStrPos = strPos;
+                        if (unicodePos !== -1) {
+                            guidPos = htmlStr
+                                .slice( nextHref, nextHref + hrefEndPos )
+                                .indexOf(guidOpenStr);
+                            if (guidPos !== -1) {
+                                guidPos += guidOpenStr.length;
+                                guid = htmlStr.slice( nextHref + guidPos ,  nextHref + guidPos + guidLength);
+                            }
+                    
+                            newHtmlStr = htmlStr.slice(0, nextHref + hrefOpenStr.length) +
+                                '"javascript:;" onclick=' + button.onClick + '("'+guid+'");' +
+                            htmlStr.slice(nextHref + hrefEndPos);
+                            nextHref = nextHref + htmlStr.length - newHtmlStr.length;
+                            htmlStr = newHtmlStr.slice(0);
+                        }
+                    }
+                }
+                hrefPos = htmlStr.slice(nextHref).indexOf(hrefOpenStr);
             }
-            */
+
             return htmlStr;
         }
     };
