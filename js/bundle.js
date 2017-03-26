@@ -47601,15 +47601,11 @@ var Drive = function (config, $) {
                 nextHref += hrefPos + 1;
                 hrefEndPos = htmlStr.slice(nextHref).indexOf(hrefCloseStr);
                 buttonPos = htmlStr.slice(nextHref, nextHref + hrefEndPos).indexOf(buttonUriStr);
-alert("found a href");
 
                 if (buttonPos !== -1) // a button is in this href
                 {
-alert("found a button");
                     for (var buttonEmoji in buttonEmojis) {
-alert ("for");
                         button = buttonEmojis[buttonEmoji];
-alert("try button "+button.emoji);
 /*                     
                         unicodePos = htmlStr
                             .slice(
