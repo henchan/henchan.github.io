@@ -47596,12 +47596,12 @@ var Drive = function (config, $) {
                   }
                 };
 
-alert("here");
             hrefPos = htmlStr.indexOf(hrefOpenStr); // get first instance of href
             while (hrefPos !== -1) {
                 nextHref += hrefPos + 1;
                 hrefEndPos = htmlStr.slice(nextHref).indexOf(hrefCloseStr);
                 buttonPos = htmlStr.slice(nextHref, nextHref + hrefEndPos).indexOf(buttonUriStr);
+alert("here");
 
                 if (buttonPos !== -1) // a button is in this href
                 {
