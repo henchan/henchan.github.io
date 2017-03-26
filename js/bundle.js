@@ -47517,21 +47517,21 @@ var Drive = function (config, $) {
 
             console.log (htmlStr);
 
-            var buttonUriStr = 'https://uri.charbutton.communocado.com'; // search for instances of this string and replace its surrounding html to enable character buttons
-            var hrefOpenStr = 'href=',
-              hrefCloseStr = '">',
-              guidOpenStr = 'task_id%3D',
-              guidLength = 36,
-              guidPos = 0,
-              guid = '',
-              hrefPos = 0,
-              hrefEndPos = 0,
-              newHtmlStr = '',
-              nextHref = 0,
-              i = 0,
-              buttonPos = 0,
-              unicodePos = 0,
-              button = {};
+            var buttonUriStr = 'https://uri.charbutton.communocado.com', // search for instances of this string and replace its surrounding html to enable character buttons
+                hrefOpenStr = 'href=',
+                hrefCloseStr = '">',
+                guidOpenStr = 'task_id%3D',
+                guidLength = 36, // incudes hyphens
+                guidPos = 0,
+                guid = '',
+                hrefPos = 0,
+                hrefEndPos = 0,
+                newHtmlStr = '',
+                nextHref = 0,
+                i = 0,
+                buttonPos = 0,
+                unicodePos = 0,
+                button = {};
 
             var buttonEmojis = {
                   "task": {
@@ -47596,9 +47596,8 @@ var Drive = function (config, $) {
                   }
                 };
 
-            // get first instance of href
-            hrefPos = htmlStr.indexOf(hrefOpenStr);
-
+alert("here");
+            hrefPos = htmlStr.indexOf(hrefOpenStr); // get first instance of href
             while (hrefPos !== -1) {
                 nextHref += hrefPos + 1;
                 hrefEndPos = htmlStr.slice(nextHref).indexOf(hrefCloseStr);
@@ -47622,7 +47621,6 @@ var Drive = function (config, $) {
                                 guidPos += guidOpenStr.length;
                                 guid = htmlStr.slice( nextHref + guidPos ,  nextHref + guidPos + guidLength);
                             }
-                    
                             newHtmlStr = htmlStr.slice(0, nextHref + hrefOpenStr.length) +
                                 '"javascript:;" onclick=' + button.onClick + '("'+guid+'");' +
                             htmlStr.slice(nextHref + hrefEndPos);
@@ -47633,7 +47631,6 @@ var Drive = function (config, $) {
                 }
                 hrefPos = htmlStr.slice(nextHref).indexOf(hrefOpenStr);
             }
-
             return htmlStr;
         }
     };
