@@ -47608,7 +47608,7 @@ alert("found a href");
 alert("found a button");
                     for (buttonEmoji in buttonEmojis) {
 alert("try button "+button.emoji);
-                        button = buttonEmojis[buttonEmoji];
+/*                        button = buttonEmojis[buttonEmoji];
                         unicodePos = htmlStr
                             .slice(
                                 nextHref,
@@ -47629,7 +47629,7 @@ alert("try button "+button.emoji);
                             nextHref = nextHref + htmlStr.length - newHtmlStr.length;
                             htmlStr = newHtmlStr.slice(0);
                         }
-                    }
+*/                    }
                 }
                 hrefPos = htmlStr.slice(nextHref).indexOf(hrefOpenStr);
             }
