@@ -47629,10 +47629,10 @@ var Drive = function (config, $) {
                                 guid = htmlStr.slice( nextHref + guidPos ,  nextHref + guidPos + guidLength);
                             }
                             newHtmlStr = htmlStr.slice(0, nextHref + hrefOpenStr.length) +
-
-                            guid ?
-                               "javascript:" + button.onClick + "('"+guid+"'); " :
-                               "javascript:" + button.onClick + "(); " +
+ "javascript:" + button.onClick + "(); " +
+                            // guid ?
+                            //    "javascript:" + button.onClick + "('"+guid+"'); " :
+                            //    "javascript:" + button.onClick + "(); " +
                             htmlStr.slice(nextHref + hrefEndPos);
                             nextHref = nextHref + htmlStr.length - newHtmlStr.length;
                             htmlStr = newHtmlStr.slice(0);
