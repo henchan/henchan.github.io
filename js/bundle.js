@@ -47026,11 +47026,9 @@ var Article = React.createClass({displayName: "Article",
 
     },
 
-    listenPressed: function (guid) {
-        guid = guid || null;
-        alert ("listen. we got a guid: "+guid);
-
-    },
+        listenPressed: function () {
+            alert ("listen. we got a guid: ");
+        },
 
     render: function () {
         var headerStyle = {
@@ -47513,6 +47511,10 @@ var Drive = function (config, $) {
                 var docHtml = content.parseHtml(doc);
                 callback((docHtml.styles + self.replaceCharButtons(docHtml.html)));
             })
+        },
+
+        listenPressed: function () {
+            alert ("listen. we got a guid: ");
         },
 
         replaceCharButtons: function (GoogleParsedHtml) {
