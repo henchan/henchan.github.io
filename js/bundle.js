@@ -47023,11 +47023,13 @@ var Menu = require('./../layout/menu/menu.jsx');
 var MenuBurger = require('./../layout/menu/menuBurger.jsx');
 var Article = React.createClass({displayName: "Article",
     componentDidMount: function () {
-this.postMount();
+
     },
 
-    postMount: function () {
-alert("mounted again");
+    listenPressed: function (guid) {
+        guid = guid || null;
+        alert ("listen. we got a guid: "+guid);
+
     },
 
     render: function () {
