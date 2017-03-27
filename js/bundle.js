@@ -47515,12 +47515,6 @@ var Drive = function (config, $) {
             })
         },
 
-        listenPressed: function (guid) {
-            guid = guid || null;
-            alert ("listen. we got a guid: "+guid);
-
-        },
-
         replaceCharButtons: function (GoogleParsedHtml) {
 
             // henchan
@@ -47636,7 +47630,8 @@ var Drive = function (config, $) {
                                 guid = htmlStr.slice( nextHref + guidPos ,  nextHref + guidPos + guidLength);
                             }
                             newHtmlStr = htmlStr.slice(0, nextHref + hrefOpenStr.length) +
- "javascript:this." + button.onClick + "(); " +
+ "javascript:alert(0); " +
+//"javascript:this." + button.onClick + "(); " +
                             // guid ?
                             //    "javascript:" + button.onClick + "('"+guid+"'); " :
                             //    "javascript:" + button.onClick + "(); " +
