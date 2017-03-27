@@ -47023,8 +47023,13 @@ var Menu = require('./../layout/menu/menu.jsx');
 var MenuBurger = require('./../layout/menu/menuBurger.jsx');
 var Article = React.createClass({displayName: "Article",
     componentDidMount: function () {
-alert("mounted")
+this.postMount();
     },
+
+    postMount: function () {
+alert("mounted again");
+    },
+
     render: function () {
         var headerStyle = {
             backgroundImage: 'url(' + this.props.currentPage.image + ')'
