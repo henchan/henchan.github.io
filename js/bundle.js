@@ -47023,7 +47023,7 @@ var Menu = require('./../layout/menu/menu.jsx');
 var MenuBurger = require('./../layout/menu/menuBurger.jsx');
 var Article = React.createClass({displayName: "Article",
     componentDidMount: function () {
-
+alert("mounted")
     },
     render: function () {
         var headerStyle = {
