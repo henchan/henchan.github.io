@@ -47509,6 +47509,7 @@ var Drive = function (config, $) {
         },
 
         listenPressed: function (guid) {
+            guid = guid || null;
             alert ("listen. we got a guid: "+guid);
 
         },
@@ -47628,8 +47629,11 @@ var Drive = function (config, $) {
                                 guid = htmlStr.slice( nextHref + guidPos ,  nextHref + guidPos + guidLength);
                             }
                             newHtmlStr = htmlStr.slice(0, nextHref + hrefOpenStr.length) +
-//                                ' onclick=' + button.onClick + '("'+guid+'");' +
-                               'javascript:' + button.onClick + '("'+guid+'"); ' +
+
+                            guid ?
+                               'javascript:' + button.onClick + '("'+guid+'"); ' :
+                               'javascript:' + button.onClick + '(); '
+                               +
                             htmlStr.slice(nextHref + hrefEndPos);
                             nextHref = nextHref + htmlStr.length - newHtmlStr.length;
                             htmlStr = newHtmlStr.slice(0);
