@@ -46130,10 +46130,6 @@ var App = function (drive, views, route) {
             };
         },
 
-        listenPressed: function () {
-            alert ("listen. we got a guid: ");
-        },
-
         setMainProperty: function (property, value, callback) {
             var self = this;
             callback = callback || noop;
@@ -47517,10 +47513,6 @@ var Drive = function (config, $) {
             })
         },
 
-        listenPressed: function () {
-            alert ("listen. we got a guid: ");
-        },
-
         replaceCharButtons: function (GoogleParsedHtml) {
 
             // henchan
@@ -47636,7 +47628,7 @@ var Drive = function (config, $) {
                                 guid = htmlStr.slice( nextHref + guidPos ,  nextHref + guidPos + guidLength);
                             }
                             newHtmlStr = htmlStr.slice(0, nextHref + hrefOpenStr.length) +
-"javascript:; onclick=this." + button.onClick + "(); " +
+"'#' onclick={this." + button.onClick + "}" +
 // "javascript:alert(0); " +
 //"javascript:{this." + button.onClick + "} " +
                             // guid ?
