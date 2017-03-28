@@ -46130,6 +46130,10 @@ var App = function (drive, views, route) {
             };
         },
 
+        listenPressed: function () {
+            alert ("listen. we got a guid: ");
+        },
+
         setMainProperty: function (property, value, callback) {
             var self = this;
             callback = callback || noop;
