@@ -47026,9 +47026,9 @@ var Article = React.createClass({displayName: "Article",
 
     },
 
-        listenPressed: function () {
-            alert ("listen. we got a guid: ");
-        },
+    listenPressed: function (event) {
+        alert ("listen. we got a guid: ");
+    },
 
     render: function () {
         var headerStyle = {
@@ -47521,7 +47521,7 @@ var Drive = function (config, $) {
             // It might break if https://docs.google.com/feeds/download/documents/export changes output format
             var htmlStr = GoogleParsedHtml.slice(0);
 
-            console.log (htmlStr);
+//            console.log (htmlStr);
 
             var buttonUriStr = 'https://uri.charbutton.communocado.com', // search for instances of this string and replace its surrounding html to enable character buttons
                 hrefOpenStr = 'href=',
@@ -47637,6 +47637,7 @@ var Drive = function (config, $) {
                             htmlStr.slice(nextHref + hrefEndPos);
                             nextHref = nextHref + htmlStr.length - newHtmlStr.length;
                             htmlStr = newHtmlStr.slice(0);
+                            console.log(htmlStr)
                         }
                     }
                 }
