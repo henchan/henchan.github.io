@@ -47424,6 +47424,10 @@ var startApp = function (drive, views) {
     Router.run(routes, HashbangLocation, function (Handler) {
         React.render(React.createElement(Handler, null), document.getElementById('app-mount'));
     });
+
+    function listenPressed () {
+    	alert("fount it");
+    }
 };
 module.exports = startApp;
 
