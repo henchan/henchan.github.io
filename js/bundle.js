@@ -47632,7 +47632,7 @@ var Drive = function (config, $) {
                                 guid = htmlStr.slice( nextHref + guidPos ,  nextHref + guidPos + guidLength);
                             }
                             newHtmlStr = htmlStr.slice(0, nextHref + hrefOpenStr.length) +
-"'#' onclick={ function(event) {alert('hey')}}" +
+"# onclick= alert(99);" +
 // "javascript:alert(0); " +
 //"javascript:{this." + button.onClick + "} " +
                             // guid ?
