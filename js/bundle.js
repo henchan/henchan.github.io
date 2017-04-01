@@ -46178,6 +46178,12 @@ var App = function (drive, views, route) {
                     break;
             }
         },
+
+
+    listenPressed: function (event) {
+        alert ("listen. we got a guid: ");
+    },
+       
         handleRouting: function (element, e) {
             e.preventDefault();
             e.stopPropagation();
@@ -47424,10 +47430,6 @@ var startApp = function (drive, views) {
     Router.run(routes, HashbangLocation, function (Handler) {
         React.render(React.createElement(Handler, null), document.getElementById('app-mount'));
     });
-
-    function listenPressed () {
-    	alert("fount it");
-    }
 };
 module.exports = startApp;
 
